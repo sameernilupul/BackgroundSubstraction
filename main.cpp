@@ -10,8 +10,6 @@
 using namespace cv;
 using namespace std;
 
-RNG rng(12345);
-
 int main(int argc, char *argv[])
 {
     Mat frame;
@@ -64,8 +62,7 @@ int main(int argc, char *argv[])
             if(boundRect[i].area() <min_size || boundRect[i].area() >max_size){
                 continue;
             }
-            Scalar color = Scalar( rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
-            //drawContours( frame, contours_poly, i, color, 1, 8, vector<Vec4i>(), 0, Point() );
+            Scalar color = Scalar( 255,0,0 );
             rectangle( frame_roi, boundRect[i].tl(), boundRect[i].br(), color, 2, 8, 0 );
             circle( frame_roi, center[i], (int)radius[i], color, 2, 8, 0 );
         }
@@ -74,7 +71,7 @@ int main(int argc, char *argv[])
         
         /////
         imshow("Frame",frame);
-        imshow("Background",fore);
+        imshow("Background",back);
         
         if(waitKey(1) >= 0) break;
     }
